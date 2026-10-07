@@ -10,7 +10,7 @@
 
 ## 시작하기
 
-1. [따라 구현하기](docs/포스트잇보드_따라구현하기.md)의 단계 01에서 환경과 작은 실행 예제를 준비한다.
+1. [#33 독립 구현 문서](docs/구현가이드/issue-33-setup.md)에서 환경과 작은 실행 예제를 준비한다.
 2. [#33 실행 기반](https://github.com/HyeYeonLee0112/AdvancedJavaProgramming/issues/33)을 진행한다.
 3. 성공하면 [#34 로컬 텍스트 카드](https://github.com/HyeYeonLee0112/AdvancedJavaProgramming/issues/34)로 넘어간다.
 
@@ -20,7 +20,8 @@
 
 - [기획서](docs/기말프로젝트_기획서.md)
 - [PRD — 기능과 완료 기준](docs/기말프로젝트_PRD.md)
-- [따라 구현하기 — 14단계 학습·구현 안내](docs/포스트잇보드_따라구현하기.md)
+- [이슈별 구현 문서 목록 — 전체 계획 1개 + 개발 문서 14개](docs/포스트잇보드_따라구현하기.md)
+- [전체 개발 계획과 완료 판정](docs/구현가이드/issue-32-roadmap.md)
 - [상위 이슈 #32 — 전체 작업 순서](https://github.com/HyeYeonLee0112/AdvancedJavaProgramming/issues/32)
 - [2026-2학기 통합 보드](https://github.com/users/HyeYeonLee0112/projects/9)
 - [강의계획서](docs/강의계획서.md)
