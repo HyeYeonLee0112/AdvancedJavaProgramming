@@ -5,6 +5,6 @@
 | 문서 | 내용 |
 | --- | --- |
 | [프로젝트 구성](architecture.md) | Swing 화면, Java 소켓 서버, MySQL이 맡는 역할과 예매 처리 규칙 |
-| [개발 순서와 이슈](roadmap.md) | MVP 1·2 작업 순서, 관련 GitHub 이슈, 통합 확인 기준 |
+| [개발 순서와 이슈](roadmap.md) | 프론트와 백엔드·서버의 MVP 1·2 작업, 화면과 서버의 연결 항목, 통합 확인 기준 |
 
 이 저장소는 영화 예매 프로젝트의 기획과 개발 준비 단계입니다. 화면 흐름은 별도 Swing 시안으로 확인했으며, 실제 소켓·MySQL 연동은 아래 개발 이슈에서 진행합니다. [열린 이슈](https://github.com/HyeYeonLee0112/AdvancedJavaProgramming/issues?q=is%3Aissue%20is%3Aopen)
