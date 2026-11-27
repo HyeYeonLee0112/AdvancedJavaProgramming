@@ -18,19 +18,31 @@
 
 [#48][i48]에서 호출 방식과 요청·응답 항목을 합의합니다. 회원·예매에서 필요한 입력값, 영화·회차·좌석의 식별값, 결과 데이터와 화면에 전달할 오류 코드를 정하고, 성공·실패 응답 예시를 공유합니다. 화면과 서버는 이 예시를 기준으로 병행 개발합니다.
 
-아래 패키지명은 구현을 시작할 때 사용할 구성안입니다.
+## Java 패키지 구성
+
+Swing 클라이언트와 Java 서버를 큰 패키지로 구분하고, 각 패키지 안에서 관련 기능의 코드를 묶습니다. MySQL은 데이터 계층이고, Java 서버가 공용 DB 연결 코드로 접근합니다.
 
 ```text
 cinema/
-  client/       실행 창, Swing 화면
-  controller/   화면 이벤트와 단계 이동
-  transport/    서버 호출과 소켓 연결
-  server/       소켓 서버와 요청 처리
-  service/      로그인 검증, 금액 계산, 예매·취소 규칙
-  dao/          JDBC 조회·저장
-  model/        회원, 영화, 회차, 좌석, 예매
-  dto/          요청·응답 데이터
+  client/              Swing 앱 시작과 공통 창
+    auth/              로그인·회원가입 화면과 화면 검증용 응답
+    transport/         Swing에서 호출할 인터페이스와 소켓 연결
+  server/              서버 실행과 DB 접속 점검
+    auth/              회원 요청 처리, 회원가입·로그인 로직, 회원 조회·저장
+    db/                여러 서버 기능이 사용하는 MySQL 연결
+  dto/
+    auth/              화면과 서버가 주고받는 회원 요청·응답
 ```
+
+| 패키지 | 담당 | 회원 기능 구현 시 둘 클래스 |
+| --- | --- | --- |
+| `cinema.client.auth` | 프론트 | `LoginPanel`, `SignUpPanel`, `MockAuthClient` |
+| `cinema.client.transport` | 백엔드 | `AuthClient`, `SocketAuthClient` |
+| `cinema.server.auth` | 백엔드 | `AuthRequestHandler`, `AuthService`, `MemberDao` |
+| `cinema.server.db` | 백엔드 | `DbConnection` |
+| `cinema.dto.auth` | 프론트와 형식을 합의하고 백엔드가 작성 | `LoginRequest`, `LoginResult`, `SignUpRequest`, `SignUpResult` |
+
+영화 조회와 예매를 구현할 때도 관련 파일을 클라이언트와 서버의 기능별 패키지에 모읍니다. 예를 들어 영화 화면은 `cinema.client.movie`, 영화 서버 처리는 `cinema.server.movie`에 둡니다.
 
 ## 예매 처리 규칙
 

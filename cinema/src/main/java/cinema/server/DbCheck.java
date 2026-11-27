@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import cinema.dao.DbConnection;
+import cinema.server.db.DbConnection;
 
 public class DbCheck {
     public static void main(String[] args) throws SQLException {

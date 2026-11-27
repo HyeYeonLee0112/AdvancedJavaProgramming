@@ -65,6 +65,14 @@ PC에 남아 있는 `app/`, `lib/`와 경로가 겹치지 않게 영화 예매 �
 
 ## 2. Swing 창과 FlatLaf 확인하기
 
+### 기본 틀을 가져온 경우
+
+Package Explorer에서 `cinema.client`의 `ClientMain.java`를 우클릭해 **Run As → Java Application**을 선택합니다. 처음에는 로그인 화면이 열리고 **회원가입**을 누르면 가입 화면으로 바뀝니다.
+
+`MockAuthClient`의 예시 계정인 `demo@example.test`와 `cinema123`으로 로그인 성공을 확인할 수 있습니다. 새 이메일로 가입한 뒤 같은 실행에서 로그인할 수도 있습니다. 예린님은 `cinema.client.auth`에서 폼을 수정하고, 로그인 이후 화면은 `ClientMain`에서 연결하면 됩니다.
+
+### 빈 프로젝트에서 기본 창을 만들 경우
+
 Package Explorer에서 `src/main/java`를 우클릭해 **New → Class**를 선택합니다. **Package**에 `cinema.client`, **Name**에 `ClientMain`을 입력하고 생성한 클래스에 아래 코드를 넣습니다. `src/main/java`가 없으면 Eclipse의 **New → Source Folder**에서 먼저 만듭니다.
 
 이 코드는 테마를 적용하고 창을 띄운 뒤, 버튼을 클릭하면 안내 문구를 바꿉니다. 테마는 Swing 화면 요소를 만들기 전에 적용합니다. `SwingUtilities.invokeLater`는 Swing 화면을 그리는 전용 스레드에서 창을 만들게 합니다. [FlatLaf 시작 방법](https://www.formdev.com/flatlaf/)
@@ -131,13 +139,13 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON cinema.* TO 'cinema_app'@'127.0.0.1';
 | 위치 | 클래스 | 역할 |
 | --- | --- | --- |
 | `cinema.client` | `ClientMain` | Swing 앱의 시작점입니다. |
-| `cinema.dao` | `DbConnection` | JDBC URL·계정을 읽어 MySQL 연결을 엽니다. 나중에 조회·저장 코드에서 재사용합니다. |
+| `cinema.server.db` | `DbConnection` | JDBC URL·계정을 읽어 MySQL 연결을 엽니다. 나중에 조회·저장 코드에서 재사용합니다. |
 | `cinema.server` | `DbCheck` | MySQL에 `SELECT 1`을 보내고 응답을 콘솔에 출력합니다. |
 
-`src/main/java` 아래에 `cinema.dao` 패키지로 **DbConnection.java**를 만듭니다. 접속 정보는 Eclipse 실행 설정의 환경 변수에서 읽습니다.
+`src/main/java` 아래에 `cinema.server.db` 패키지로 **DbConnection.java**를 만듭니다. 접속 정보는 Eclipse 실행 설정의 환경 변수에서 읽습니다.
 
 ```java
-package cinema.dao;
+package cinema.server.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -173,7 +181,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import cinema.dao.DbConnection;
+import cinema.server.db.DbConnection;
 
 public class DbCheck {
     public static void main(String[] args) throws SQLException {
@@ -229,6 +237,6 @@ public class DbCheck {
 ### 첫 설정 완료 기준
 
 - [ ] Eclipse에서 `cinema` 프로젝트가 인식되고 두 라이브러리가 다운로드된다.
-- [ ] `ClientMain`을 실행하면 Swing 창이 열리고 버튼을 누르면 문구가 바뀐다.
+- [ ] Eclipse에서 기본 틀의 `ClientMain`을 실행하면 로그인·회원가입 카드를 오갈 수 있다.
 - [ ] `DbCheck`를 실행하면 MySQL 연결 성공 메시지를 확인할 수 있다.
 - [ ] 팀원은 같은 `pom.xml`을 가져와 실행할 수 있고, 각자의 로컬 DB 비밀번호는 Git에 올라가지 않는다.
