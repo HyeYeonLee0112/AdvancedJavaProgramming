@@ -1,4 +1,4 @@
-package cinema.dao;
+package cinema.server.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

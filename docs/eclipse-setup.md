@@ -131,13 +131,13 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON cinema.* TO 'cinema_app'@'127.0.0.1';
 | 위치 | 클래스 | 역할 |
 | --- | --- | --- |
 | `cinema.client` | `ClientMain` | Swing 앱의 시작점입니다. |
-| `cinema.dao` | `DbConnection` | JDBC URL·계정을 읽어 MySQL 연결을 엽니다. 나중에 조회·저장 코드에서 재사용합니다. |
+| `cinema.server.db` | `DbConnection` | JDBC URL·계정을 읽어 MySQL 연결을 엽니다. 나중에 조회·저장 코드에서 재사용합니다. |
 | `cinema.server` | `DbCheck` | MySQL에 `SELECT 1`을 보내고 응답을 콘솔에 출력합니다. |
 
-`src/main/java` 아래에 `cinema.dao` 패키지로 **DbConnection.java**를 만듭니다. 접속 정보는 Eclipse 실행 설정의 환경 변수에서 읽습니다.
+`src/main/java` 아래에 `cinema.server.db` 패키지로 **DbConnection.java**를 만듭니다. 접속 정보는 Eclipse 실행 설정의 환경 변수에서 읽습니다.
 
 ```java
-package cinema.dao;
+package cinema.server.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -173,7 +173,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import cinema.dao.DbConnection;
+import cinema.server.db.DbConnection;
 
 public class DbCheck {
     public static void main(String[] args) throws SQLException {
