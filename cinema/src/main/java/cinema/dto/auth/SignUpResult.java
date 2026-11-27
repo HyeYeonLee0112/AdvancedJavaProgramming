@@ -6,7 +6,7 @@ package cinema.dto.auth;
  *
  * @param success 회원가입 성공 여부
  * @param memberId 성공 시 생성된 회원 번호
- * @param errorCode 실패 원인을 나타내는 코드. 예를 들어 {@code EMAIL_ALREADY_EXISTS}
+ * @param errorCode 실패 원인을 나타내는 코드. 예를 들어 {@link AuthErrorCode#EMAIL_ALREADY_EXISTS}
  */
-public record SignUpResult(boolean success, Long memberId, String errorCode) {
+public record SignUpResult(boolean success, Long memberId, AuthErrorCode errorCode) {
 }

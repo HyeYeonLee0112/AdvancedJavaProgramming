@@ -9,14 +9,14 @@ package cinema.dto.auth;
  * @param memberId 성공한 회원의 번호
  * @param displayName 성공한 회원의 표시 이름
  * @param sessionToken 로그인 이후 인증이 필요한 요청에 사용할 토큰
- * @param errorCode 실패 원인을 나타내는 코드. 예를 들어 {@code INVALID_CREDENTIALS}
+ * @param errorCode 실패 원인을 나타내는 코드. 예를 들어 {@link AuthErrorCode#INVALID_CREDENTIALS}
  */
 public record LoginResult(
         boolean success,
         Long memberId,
         String displayName,
         String sessionToken,
-        String errorCode
+        AuthErrorCode errorCode
 ) {
     @Override
     public String toString() {
