@@ -14,5 +14,11 @@ public enum AuthErrorCode {
     NETWORK_ERROR,
 
     /** 정해진 시간 안에 서버 응답을 받지 못했습니다. */
-    REQUEST_TIMEOUT
+    REQUEST_TIMEOUT,
+
+    /** 서버가 정한 입력 조건을 만족하지 않습니다. */
+    INVALID_INPUT,
+
+    /** 서버나 데이터베이스 오류로 처리할 수 없습니다. */
+    SERVER_ERROR
 }
