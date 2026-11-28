@@ -18,10 +18,13 @@ final class PasswordHasher {
         return salt;
     }
 
+    //비밀번호에 해당하는 바이트 배열을 계산
     byte[] derive(String password, byte[] salt, int iterations)
             throws GeneralSecurityException {
-        // PBEKeySpec이 받을 문자 배열을 만듭니다. 256은 결과의 비트 길이입니다.
+        // PBEKeySpec이 받을 문자 배열을 만듭니다. 
         char[] chars = password.toCharArray();
+        
+        //256은 결과의 비트 길이
         PBEKeySpec spec = new PBEKeySpec(chars, salt, iterations, 256);
         // 지정한 알고리즘으로 계산한 키를 바이트 배열로 돌려줍니다.
         try {
