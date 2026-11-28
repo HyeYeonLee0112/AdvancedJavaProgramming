@@ -9,4 +9,14 @@ package cinema.dto.auth;
  * @param errorCode 실패 원인을 나타내는 코드. 예를 들어 {@link AuthErrorCode#EMAIL_ALREADY_EXISTS}
  */
 public record SignUpResult(boolean success, Long memberId, AuthErrorCode errorCode) {
+
+    public SignUpResult {
+        if (success) {
+            if (memberId == null || memberId <= 0 || errorCode != null) {
+                throw new IllegalArgumentException("회원가입 성공 응답에는 회원 번호가 필요합니다.");
+            }
+        } else if (memberId != null || errorCode == null) {
+            throw new IllegalArgumentException("회원가입 실패 응답에는 오류 코드가 필요합니다.");
+        }
+    }
 }

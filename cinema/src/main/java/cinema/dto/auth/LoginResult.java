@@ -22,4 +22,16 @@ public record LoginResult(
     public String toString() {
         return "LoginResult[success=" + success + ", memberId=" + memberId + ", errorCode=" + errorCode + "]";
     }
+
+    public LoginResult {
+        if (success) {
+            boolean missingRequiredValue = memberId == null || displayName == null || sessionToken == null;
+            if (missingRequiredValue || memberId <= 0 || displayName.isBlank()
+                    || sessionToken.isBlank() || errorCode != null) {
+                throw new IllegalArgumentException("로그인 성공 응답에 필요한 값이 없습니다.");
+            }
+        } else if (memberId != null || displayName != null || sessionToken != null || errorCode == null) {
+            throw new IllegalArgumentException("로그인 실패 응답에는 오류 코드만 있어야 합니다.");
+        }
+    }
 }
